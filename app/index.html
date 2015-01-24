@@ -17,15 +17,19 @@
 
     <!-- build:vulcanized elements/elements.vulcanized.html -->
     <link rel="import" href="elements/elements.html">
+    <link rel="import" href="bower_components/paper-elements/paper-elements.html">
+    <link rel="import" href="bower_components/flip-card/flip-card.html">
+    <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
     <!-- endbuild-->
   </head>
   <body unresolved>
-    <div class="hero-unit">
-      <yo-greeting></yo-greeting>
-      <p>You now have</p>
-      <yo-list></yo-list>
-    </div>
-
+    
+  	<flip-card>
+  		<front>
+  		Tabula Rasa
+  		</front>
+  		<back>Bye mate!</back>
+	</flip-card>
     <!-- build:js scripts/app.js -->
     <script src="scripts/app.js"></script>
     <!-- endbuild-->
