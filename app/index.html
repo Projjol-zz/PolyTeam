@@ -12,21 +12,38 @@
       margin: 0;
       background: #f1f1f1;
     }
-    .topTitle {
-    	padding: 10%;
-      	font-size: 4em;
-      	text-align: center;
-      	text-decoration: underline;
-      	top: 10px;
-      }
     .green {
       position: absolute;
       top: 0;
       right: 0;
       left: 0;
       height: 350px;
-      background: #70c26f;
+      /*background: #70c26f;*/
+      background-image: url('bg.jpg');
+      background-size: cover;
+
+  	  -webkit-filter: blur(2px);
+      -moz-filter: blur(2px);
+      -o-filter: blur(2px);
+      -ms-filter: blur(2px);
+       filter: blur(2px);
     }
+    .topTitle {
+    	padding: 10%;
+      	font-size: 4em;
+      	color: white;
+      	text-align: center;
+      	text-decoration: underline;
+      	top: 10px;
+      	-webkit-filter: blur(0);
+    	-moz-filter: blur(0);
+    	-o-filter: blur(0);
+    	-ms-filter: blur(0);
+    	filter: blur(0);
+    	-webkit-transform: translateZ(0);
+      }
+    
+
   </style>
 </head>
 <body>
