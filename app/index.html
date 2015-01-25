@@ -5,13 +5,39 @@
 
   <script src="bower_components/webcomponentsjs/webcomponents.js"></script>
   <link href="bower_components/core-animated-pages/core-animated-pages.html" rel="import">
+  <script src="bower_components/webcomponentsjs/webcomponents.js"></script>
 
-  <style>
+  <link href="bower_components/font-roboto/roboto.html" rel="import">
+  <link href="bower_components/core-icon/core-icon.html" rel="import">
+  <link href="bower_components/core-icons/core-icons.html" rel="import">
+  <link href="bower_components/paper-button/paper-button.html" rel="import">
+  <style shim-shadowdom>
+  	paper-button.colored {
+  		color: #4285f4;
+  	}
+  	paper-button[raised].colored {
+  		background:#4285f4;
+  		color:#fff;
+  	}
+  	paper-button.custom > core-icon {
+      margin-right: 4px;
+    }
+
+    paper-button.hover:hover {
+      background: #eee;
+    }
+
+    paper-button.blue-ripple::shadow #ripple {
+      color: #4285f4;
+    }
+
+ 
     body {
       font-family: 'Roboto 2', 'Helvetica Neue', Helvetica, Arial, sans-serif;
       margin: 0;
       background: #f1f1f1;
     }
+
     .green {
       position: absolute;
       top: 0;
@@ -48,6 +74,18 @@
         left: 0;
         text-align: center;
       }
+
+      a:link {
+    	text-decoration:none;
+    	color: #FF0000;
+		}
+	  a:visited {
+			color: #FF0000;
+		}
+      .linked {
+			text-decoration:none;
+			padding:3%;
+		}
 
       .chip {
         display: inline-block;
@@ -110,6 +148,10 @@
       .card-album-title {
         font-size: 2em;
       }
+      .card-data {
+      	padding: 2%;
+      	font-size: 20px;
+      }
       
     </style>
 
@@ -130,9 +172,18 @@
             </div>
 
           </template>
-
+          <section>
+          	<div class="linked">
+          		<paper-button raised class="colored">
+          		<a href ="/comparisions.html">
+          		Continue >>
+          		</a>
+          		</paper-button>
+          	</div>
+          </section>
         </div>
       </section>
+
 
       <section id="details">
 
@@ -145,16 +196,18 @@
               </div>
               <div flex>
                 <div class="card-album-title">{{selectedAlbum.album}}</div>
+                <div class="card-data">
+                {{selectedAlbum.data}}
+                </div> 
               </div>
             </div>
           </div>
         </div>
 
       </section>
-
     </core-animated-pages>
 
-  </template>
+  </template> 
   <script>
 
     Polymer('music-demo', {
@@ -162,10 +215,10 @@
       page: 0,
 
       items: [
-        { artist: 'About', album: 'Tabula Rasa (ˈtæbjələ ˈrɑːsə)', color: '#f4db33' },
-        { artist: 'Gender', album: 'Past Prologue', color: '#972ff8' },
-        { artist: 'Society & Labor', album: 'Spectre', color: '#7dd6fe' },
-        { artist: 'Poverty', album: 'Awake', color: '#dc3c84' }
+        { artist: 'About', album: 'Tabula Rasa (ˈtæbjələ ˈrɑːsə)', color: '#f4db33', data: 'Tabula rasa is the epistemological theory that individuals are born without built-in mental content and that their knowledge comes from experience and perception. For the hackathon, we took education and its impact on society as an overlying theme. We aim to compare the changes in literacy rates versus a number of societal problems in order to present the utility of modern day education.' },
+        { artist: 'Gender', album: 'Gender', color: '#972ff8' },
+        { artist: 'Society & Labor', album: 'Society & Labor', color: '#7dd6fe' },
+        { artist: 'Poverty', album: 'Poverty', color: '#dc3c84' }
       ],
 
       selectedAlbum: null,
@@ -179,6 +232,20 @@
         }
       }
     });
+function clickAction(e) {
+      var t = e.target;
+      if (t.localName === 'paper-button') {
+        if (t.hasAttribute('disabled')) {
+          console.error('should not be able to click disabled button', t);
+        } else {
+          console.log('click', t);
+        }
+      }
+    }
+
+    addEventListener('template-bound', function(e) {
+      e.target.clickAction = clickAction;
+    });
 
   </script>
   </polymer-element>
@@ -188,6 +255,7 @@
   	tabula rasa
   	</div>
   </div>
+  
 
   <music-demo></music-demo>
 
